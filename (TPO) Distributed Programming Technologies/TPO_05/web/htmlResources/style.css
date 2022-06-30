@@ -1,0 +1,32 @@
+
+body {
+    background-color: black;
+    color: chartreuse;
+}
+
+label {
+    color: red;
+}
+
+input[type="submit"] {
+    color: chartreuse;
+    background: #827890;
+}
+
+iframe {
+    display: none;
+}
+
+.logout {
+    height: 50px;
+    width: 100px;
+    font-size: 20px;
+    color: chartreuse;
+    background: #827890;
+}
+
+li {
+    font-size: 20px;
+}
+
+

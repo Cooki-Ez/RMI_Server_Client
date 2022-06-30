@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Login page</title>
+    <link rel="stylesheet" type="text/css" href="htmlResources/style.css">
+    <link rel="icon" href="htmlResources/images/pika.png">
+    <style>
+        body {
+            margin-top: 12%;
+            margin-left: 44%;
+        }
+    </style>
+    <script src="htmlResources/scripts/jquery-3.3.1.js"></script>
+    <script src="htmlResources/scripts/jquery.validate.js"></script>
+</head>
+<body>
+
+<form name="signInForm" method="post" action="/signInServlet" id="signInForm">
+    Login<br>
+    <input type="text" name="login" id="login" placeholder="Login">
+    <label for="login" id="loginLabel"></label>
+
+    <br><br>
+
+    Password<br>
+    <input type="password" name="password" id="password" placeholder="Password">
+    <br><br>
+
+    <input type="submit" value="Sign in"><br>
+</form>
+
+<script>
+    $(document).ready(function () {
+        $("#signInForm").validate({
+            rules: {
+                login: {
+                    required: true
+                },
+                password: {
+                    required: true
+                }
+            },
+            messages: {
+                login: "*required field",
+                password: "*required field"
+            },
+            submitHandler: function () {
+                $.post("/signInServlet",
+                    {
+                        request: "signIn",
+                        login: $("#login").val(),
+                        password: $("#password").val()
+                    }, function (data, responseType) {
+                        if (responseType === "success") {
+                            window.location.replace("/htmlResources/resourceList.html");
+                        } else {
+                            console.log(responseType);
+                            $("#loginLabel").html("login/password is incorrect");
+                        }
+                    });
+            }
+        });
+
+        var hideLoginLabel = function () {
+            document.getElementById("loginLabel").innerHTML = "";
+        };
+        $('#login').focusin(hideLoginLabel);
+        $('#password').focusin(hideLoginLabel);
+    });
+
+
+</script>
+</body>
+</html>

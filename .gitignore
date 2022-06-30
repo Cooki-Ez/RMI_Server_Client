@@ -1,0 +1,4 @@
+*.iml
+*.zip
+# Project exclude paths
+/out/
